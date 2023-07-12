@@ -122,10 +122,13 @@
   font-variant-ligatures: normal;
   text-rendering: optimizeLegibility;
 
+  /* commented, until the theme switcher is fixed */
+  /* 
   background-image: url(/bg.jpg);
   background-position: left bottom;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
+  */
 
   box-shadow: inset 0px 0px 100px var(--platinum-40);
   backdrop-filter: invert(0) brightness(40%) blur(8px);
