@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { vIntersectionObserver } from '@vueuse/components'
 import { setInterval, clearInterval } from 'timers-browserify'
 
@@ -10,11 +10,11 @@ import SkillsSection from './components/SkillsSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import ContactSection from './components/ContactSection.vue'
 
-const main = ref(null)
-const homeSection = ref(null)
-const skillsSection = ref(null)
-const aboutSection = ref(null)
-const contactSection = ref(null)
+const main: Ref = ref(null)
+const homeSection: Ref = ref(null)
+const skillsSection: Ref = ref(null)
+const aboutSection: Ref = ref(null)
+const contactSection: Ref = ref(null)
 </script>
 
 <template>
@@ -25,18 +25,18 @@ const contactSection = ref(null)
       ref="homeSection"
       v-intersection-observer="[
         ([{ isIntersecting }]) => {
-          if (isIntersecting) $refs.homeSection.$refs.myName.classList.add('animate')
+          if (isIntersecting) homeSection.$refs.myName.classList.add('animate')
         },
-        { main }
+        { root: main }
       ]"
     />
     <SkillsSection
       ref="skillsSection"
       v-intersection-observer="[
         ([{ isIntersecting }]) => {
-          if (isIntersecting) $refs.skillsSection.$refs.skills.classList.add('animate')
+          if (isIntersecting) skillsSection.$refs.skills.classList.add('animate')
         },
-        { main }
+        { root: main }
       ]"
     />
     <AboutSection
@@ -44,8 +44,8 @@ const contactSection = ref(null)
       v-intersection-observer="[
         ([{ isIntersecting }]) => {
           if (isIntersecting) {
-            const aboutMeHidden = $refs.aboutSection.$refs.pre1
-            const aboutMeVisible = $refs.aboutSection.$refs.pre2
+            const aboutMeHidden = aboutSection.$refs.pre1
+            const aboutMeVisible = aboutSection.$refs.pre2
 
             if (!aboutMeVisible.innerText) {
               let i = 0
@@ -60,16 +60,16 @@ const contactSection = ref(null)
             }
           }
         },
-        { main }
+        { root: main }
       ]"
     />
     <ContactSection
       ref="contactSection"
-      v-intersection-observer="[([{ isIntersecting }]) => {}, { main }]"
+      v-intersection-observer="[([{ isIntersecting }]) => {}, { root: main }]"
     />
   </main>
 
-  <ThemeSwitcher v-on:click="" />
+  <ThemeSwitcher />
 </template>
 
 <style scoped>

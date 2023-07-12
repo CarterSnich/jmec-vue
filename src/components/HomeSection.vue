@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import myImage from '../assets/img/me.jpg'
 
 const myName = ref(null)
 </script>
@@ -7,7 +8,7 @@ const myName = ref(null)
 <template>
   <section id="home">
     <div class="me">
-      <img src="img/me.jpg" alt="me" />
+      <img :src="myImage" alt="me" />
     </div>
     <div class="intro">
       <div>

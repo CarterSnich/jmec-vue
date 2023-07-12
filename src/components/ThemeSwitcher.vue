@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { $ref } from 'vue/macros'
-
-const themeSwitcher = ref(null)
+let lightMode: boolean = false
 
 function themeSwitch() {
-  localStorage.setItem('LIGHTMODE', this.checked ? 1 : 0)
-}
-
-if (localStorage.getItem('LIGHTMODE') != null && localStorage.getItem('LIGHTMODE') == 1) {
+  lightMode = !lightMode
+  console.log(document.getElementById('app'))
+  document.getElementById('app')?.classList.toggle('light', lightMode)
+  localStorage.setItem('LIGHTMODE', `${lightMode}`)
 }
 </script>
 
 <template>
   <div id="theme-switcher">
     <label>
-      <input type="checkbox" ref="themeSwitcher" />
+      <input type="checkbox" ref="themeSwitcher" v-on:change="themeSwitch" />
       <span></span>
     </label>
   </div>
@@ -47,7 +44,7 @@ if (localStorage.getItem('LIGHTMODE') != null && localStorage.getItem('LIGHTMODE
 }
 
 #theme-switcher input {
-  /* display: none; */
+  display: none;
 }
 
 #theme-switcher span {
