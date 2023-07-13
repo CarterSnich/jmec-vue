@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const aboutMe: string = `
-hello there!
+const aboutMe: string = `hello there!
 
 i'm joe mar closa, a skilled software developer specializing in web development. my expertise includes html/css, javascript frameworks, php, and python. i also have experience in mobile app development. proficiency in writing automations with python and shell scripts. i leverage my linux expertise to create and manage servers for web servicing.
 
@@ -17,7 +16,7 @@ const pre2 = ref(null)
       <pre ref="pre1">{{ aboutMe }}</pre>
       <pre ref="pre2"></pre>
     </div>
-    <div>
+    <div id="doc-dw-links">
       <a href="assets/resume.pdf" download> resume</a>
       <a href="assets/cv.pdf" download> cv</a>
       <a href="assets/biodata.pdf" download> biodata</a>
@@ -25,7 +24,7 @@ const pre2 = ref(null)
   </section>
 </template>
 
-<style scoped>
+<style>
 section#about {
   display: grid;
   place-content: center;
@@ -41,34 +40,34 @@ section#about > * {
   padding: 1.25rem;
 }
 
-section#about > div.about-me {
-  position: relative;
+div.about-me {
+  display: grid;
+  place-content: center;
+  isolation: isolate;
 }
 
-section#about > div.about-me > pre {
+div.about-me > pre {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   white-space: break-spaces;
   line-height: 1.75rem;
 }
 
-section#about > div.about-me > pre:first-child {
+div.about-me > pre:first-child {
   color: transparent;
 }
 
-section#about > div.about-me > pre:nth-child(2) {
-  position: absolute;
-}
-
-section#about > div.about-me > pre:nth-child(2) > span {
+div.about-me > pre:nth-child(2) > span {
   border-right: 0.75rem solid var(--platinum); /* The typwriter cursor */
   animation: typing 1s steps(13, end), blink-caret 1s step-end infinite;
 }
 
-section#about > div {
+#doc-dw-links {
   display: flex;
   flex-direction: row;
 }
 
-section#about > div > a {
+#doc-dw-links > a {
   flex-grow: 1;
   text-align: center;
 
@@ -83,7 +82,7 @@ section#about > div > a {
   transition: all 0.3s ease-in-out;
 }
 
-section#about > div > a:hover {
+#doc-dw-links > a:hover {
   color: var(--onyx);
   background-size: 100%;
 }
@@ -114,6 +113,16 @@ section#about > div > a:hover {
   100% {
     color: var(--onyx);
     background-color: var(--platinum);
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: var(--platinum);
+  }
+  50% {
+    border-color: transparent;
   }
 }
 </style>
