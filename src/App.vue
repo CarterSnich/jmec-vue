@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
+import { ref, toRef, type Ref } from 'vue'
 import { vIntersectionObserver } from '@vueuse/components'
 import { setInterval, clearInterval } from 'timers-browserify'
 
@@ -15,17 +15,22 @@ const homeSection: Ref = ref(null)
 const skillsSection: Ref = ref(null)
 const aboutSection: Ref = ref(null)
 const contactSection: Ref = ref(null)
+
+const currentSection: Ref<string> = ref('')
 </script>
 
 <template>
-  <ScrollSpy />
+  <ScrollSpy :current-section="toRef(currentSection)" />
 
   <main ref="main">
     <HomeSection
       ref="homeSection"
       v-intersection-observer="[
         ([{ isIntersecting }]) => {
-          if (isIntersecting) homeSection.$refs.myName.classList.add('animate')
+          if (isIntersecting) {
+            currentSection = 'home'
+            homeSection.$refs.myName.classList.add('animate')
+          }
         },
         { root: main }
       ]"
@@ -34,7 +39,10 @@ const contactSection: Ref = ref(null)
       ref="skillsSection"
       v-intersection-observer="[
         ([{ isIntersecting }]) => {
-          if (isIntersecting) skillsSection.$refs.skills.classList.add('animate')
+          if (isIntersecting) {
+            currentSection = 'skills'
+            skillsSection.$refs.skills.classList.add('animate')
+          }
         },
         { root: main }
       ]"
@@ -44,6 +52,8 @@ const contactSection: Ref = ref(null)
       v-intersection-observer="[
         ([{ isIntersecting }]) => {
           if (isIntersecting) {
+            currentSection = 'about'
+
             const aboutMeHidden = aboutSection.$refs.pre1
             const aboutMeVisible = aboutSection.$refs.pre2
 
@@ -65,7 +75,12 @@ const contactSection: Ref = ref(null)
     />
     <ContactSection
       ref="contactSection"
-      v-intersection-observer="[([{ isIntersecting }]) => {}, { root: main }]"
+      v-intersection-observer="[
+        ([{ isIntersecting }]) => {
+          currentSection = 'contact'
+        },
+        { root: main }
+      ]"
     />
   </main>
 

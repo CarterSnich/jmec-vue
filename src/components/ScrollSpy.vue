@@ -1,11 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { type Ref } from 'vue'
+
+defineProps<{
+  currentSection: Ref
+}>()
+</script>
+
 <template>
   <div id="scroll-spy">
     <ul>
-      <li><a href="#home" data-target-id="home">home</a></li>
-      <li><a href="#skills" data-target-id="skills">skills</a></li>
-      <li><a href="#about" data-target-id="about">about</a></li>
-      <li><a href="#contact" data-target-id="contact">contact</a></li>
+      <li :class="{ active: currentSection.value === 'home' }">
+        <a href="#home" data-target-id="home">home</a>
+      </li>
+      <li :class="{ active: currentSection.value === 'skills' }">
+        <a href="#skills">skills</a>
+      </li>
+      <li :class="{ active: currentSection.value === 'about' }">
+        <a href="#about">about</a>
+      </li>
+      <li :class="{ active: currentSection.value === 'contact' }">
+        <a href="#contact">contact</a>
+      </li>
     </ul>
   </div>
 </template>
