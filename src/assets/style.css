@@ -129,6 +129,7 @@
   background-size: cover;
   background-repeat: no-repeat; 
   */
+  background-color: var(--night);
 
   box-shadow: inset 0px 0px 100px var(--platinum-40);
   backdrop-filter: invert(0) brightness(40%) blur(8px);
