@@ -114,7 +114,9 @@ const skills = ref(null)
   </section>
 </template>
 
-<style>
+<style scope>
+@import url(https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css);
+
 section#skills {
   display: flex;
   flex-direction: row;
