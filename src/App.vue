@@ -17,6 +17,41 @@ const aboutSection: Ref = ref(null)
 const contactSection: Ref = ref(null)
 
 const currentSection: Ref<string> = ref('')
+
+async function observer(isIntersecting: boolean, section: string) {
+  if (isIntersecting) {
+    currentSection.value = section
+
+    switch (section) {
+      case 'home':
+        homeSection.value.$refs.myName.classList.add('animate')
+        break
+
+      case 'skills':
+        skillsSection.value.$refs.skills.classList.add('animate')
+        break
+
+      case 'about':
+        if (isIntersecting) {
+          const aboutMeHidden = aboutSection.value.$refs.pre1
+          const aboutMeVisible = aboutSection.value.$refs.pre2
+
+          if (!aboutMeVisible.innerText) {
+            let i = 0
+            let interval = setInterval(() => {
+              aboutMeVisible.innerText += aboutMeHidden.innerText[i]
+              aboutMeVisible.innerHTML += `<span></span>`
+              if (i >= aboutMeHidden.innerText.length - 1) {
+                clearInterval(interval)
+              }
+              ++i
+            }, aboutMeHidden.innerText.length * 0.05)
+          }
+        }
+        break
+    }
+  }
+}
 </script>
 
 <template>
@@ -26,59 +61,28 @@ const currentSection: Ref<string> = ref('')
     <HomeSection
       ref="homeSection"
       v-intersection-observer="[
-        ([{ isIntersecting }]) => {
-          if (isIntersecting) {
-            currentSection = 'home'
-            homeSection.$refs.myName.classList.add('animate')
-          }
-        },
+        ([{ isIntersecting }]) => observer(isIntersecting, 'home'),
         { root: main }
       ]"
     />
     <SkillsSection
       ref="skillsSection"
       v-intersection-observer="[
-        ([{ isIntersecting }]) => {
-          if (isIntersecting) {
-            currentSection = 'skills'
-            skillsSection.$refs.skills.classList.add('animate')
-          }
-        },
+        ([{ isIntersecting }]) => observer(isIntersecting, 'skills'),
         { root: main }
       ]"
     />
     <AboutSection
       ref="aboutSection"
       v-intersection-observer="[
-        ([{ isIntersecting }]) => {
-          if (isIntersecting) {
-            currentSection = 'about'
-
-            const aboutMeHidden = aboutSection.$refs.pre1
-            const aboutMeVisible = aboutSection.$refs.pre2
-
-            if (!aboutMeVisible.innerText) {
-              let i = 0
-              let interval = setInterval(() => {
-                aboutMeVisible.innerText += aboutMeHidden.innerText[i]
-                aboutMeVisible.innerHTML += `<span></span>`
-                if (i >= aboutMeHidden.innerText.length - 1) {
-                  clearInterval(interval)
-                }
-                ++i
-              }, aboutMeHidden.innerText.length * 0.05)
-            }
-          }
-        },
+        ([{ isIntersecting }]) => observer(isIntersecting, 'about'),
         { root: main }
       ]"
     />
     <ContactSection
       ref="contactSection"
       v-intersection-observer="[
-        ([{ isIntersecting }]) => {
-          currentSection = 'contact'
-        },
+        ([{ isIntersecting }]) => observer(isIntersecting, 'contact'),
         { root: main }
       ]"
     />
