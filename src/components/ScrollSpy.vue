@@ -25,7 +25,7 @@ defineProps<{
   </div>
 </template>
 
-<style>
+<style scoped>
 div#scroll-spy {
   display: grid;
   place-content: center;
@@ -102,6 +102,32 @@ div#scroll-spy > ul > li > a:hover {
 @keyframes scroll-spy-link-active-indicator {
   100% {
     width: calc(100% - 1rem);
+  }
+}
+
+/* 
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+@media (max-width: 767.98px) {
+  div#scroll-spy {
+    position: fixed;
+    bottom: 0;
+    height: 3.25rem;
+    width: 100%;
+    font-size: 1rem;
+    background-image: linear-gradient(180deg, #00000000 0%, var(--night) 100%);
+    z-index: 1010;
+  }
+
+  div#scroll-spy > ul {
+    align-items: center;
+
+    rotate: unset;
+    width: 100vw;
+    height: 3.25rem;
   }
 }
 </style>

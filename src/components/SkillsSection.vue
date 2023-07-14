@@ -114,7 +114,7 @@ const skills = ref(null)
   </section>
 </template>
 
-<style>
+<style scoped>
 @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css);
 
 section#skills {
@@ -238,6 +238,68 @@ section#skills.animate .skill-card:nth-child(5) {
   to {
     filter: blur(0px);
     transform: translateX(0%);
+  }
+}
+
+/*
+  ===========================================
+                  LIGHT MODE
+  ===========================================
+ */
+
+.light .skill-card {
+  text-shadow: var(--shadow-light);
+}
+
+.light .skill-card:hover {
+  background-color: var(--night-40);
+}
+
+/*
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+@media (max-width: 767.98px) {
+  section#skills {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    padding: 2rem;
+
+    /* hide scrollbar */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+
+  /* hide scrollbar */
+  section#skills::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+
+  div.skill-card {
+    flex-grow: 1;
+    width: calc(100% - 1rem);
+    height: calc(100% - 16rem);
+    box-shadow: inset var(--shadow), var(--shadow);
+    background-color: rgba(13, 13, 13, 0.8);
+
+    display: grid;
+    place-content: center;
+    gap: 5.25rem;
+
+    pointer-events: none;
+    scroll-snap-align: center;
+  }
+
+  div.skill-card > * {
+    opacity: 1;
+    position: static;
+    transform: unset;
   }
 }
 </style>

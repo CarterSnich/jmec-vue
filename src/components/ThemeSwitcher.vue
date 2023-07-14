@@ -6,7 +6,7 @@ const themeSwitcher = ref(null)
 const lightMode = useStorage('LIGHTMODE', true)
 </script>
 
-<template>
+<template scoped>
   <div id="theme-switcher">
     <label>
       <input type="checkbox" ref="themeSwitcher" v-model="lightMode" />
@@ -51,5 +51,35 @@ const lightMode = useStorage('LIGHTMODE', true)
 #theme-switcher span::before {
   content: '';
   font-size: calc(12px + 1rem);
+}
+
+/*
+  ===========================================
+                  LIGHT MODE
+  ===========================================
+ */
+
+.light #theme-switcher > label {
+  background-position: right;
+}
+
+.light #theme-switcher span:before {
+  content: '';
+}
+
+/*
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  #theme-switcher {
+    top: 0.75rem;
+    right: 0.75rem;
+    bottom: unset;
+    left: unset;
+  }
 }
 </style>

@@ -22,7 +22,7 @@
   </section>
 </template>
 
-<style>
+<style scoped>
 section#contact {
   display: grid;
   place-content: center;
@@ -57,5 +57,50 @@ ul#contact-links > li > a {
 ul#contact-links > li > a:hover {
   color: var(--onyx);
   background-size: 100%;
+}
+
+/* 
+  ===========================================
+                  LIGHT MODE
+  ===========================================
+ */
+
+.light section#contact {
+  text-shadow: var(--shadow-light);
+}
+
+/* 
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  section#contact {
+    font-size: 4vw;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  section#contact {
+    font-size: 4vw;
+    white-space: nowrap;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  ul#contact-links > li > a:hover {
+    background-size: calc(800px + 5rem);
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  ul#contact-links > li > a:hover {
+    background-size: 800px;
+  }
 }
 </style>

@@ -101,7 +101,7 @@ async function observer(isIntersecting: boolean, section: string) {
   <ThemeSwitcher />
 </template>
 
-<style scoped>
+<style>
 main {
   flex-grow: 1;
 
@@ -125,5 +125,19 @@ main > section {
   height: 100vh;
   padding: 2.25rem;
   scroll-snap-align: center;
+}
+
+/* 
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+@media (max-width: 767.98px) {
+  main > section {
+    height: calc(100vh - 3.25rem);
+    padding: 1.25rem;
+    margin-bottom: 3.25rem;
+  }
 }
 </style>

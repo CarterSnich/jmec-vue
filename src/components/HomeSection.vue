@@ -31,7 +31,7 @@ const myName = ref(null)
   </section>
 </template>
 
-<style>
+<style scoped>
 section#home {
   display: flex;
   justify-content: space-evenly;
@@ -187,6 +187,44 @@ div.intro > div > div.bar {
   }
   50% {
     border-color: transparent;
+  }
+}
+
+/* 
+  ===========================================
+                  LIGHT MODE
+  ===========================================
+ */
+
+.light div.intro {
+  text-shadow: var(--shadow-light);
+}
+
+.light div.me > img {
+  height: calc(100% - 1rem);
+  width: calc(100% - 1rem);
+  margin: auto;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-light);
+}
+
+/* 
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+@media (max-width: 767.98px) {
+  section#home {
+    flex-direction: column;
+    justify-content: start;
+    gap: 1.25rem;
+  }
+
+  #links > ul > li:active {
+    color: var(--onyx);
+    mix-blend-mode: difference;
+    background-size: 100%;
   }
 }
 </style>

@@ -24,7 +24,7 @@ const pre2 = ref(null)
   </section>
 </template>
 
-<style>
+<style scoped>
 section#about {
   display: grid;
   place-content: center;
@@ -123,6 +123,42 @@ div.about-me > pre:nth-child(2) > span {
   }
   50% {
     border-color: transparent;
+  }
+}
+
+/*
+  ===========================================
+                  LIGHT MODE
+  ===========================================
+ */
+
+.light section#about {
+  text-shadow: var(--shadow-light);
+}
+
+/*
+  ===========================================
+                RESPONSIVE
+  ===========================================
+ */
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  section#about {
+    font-size: 4vw;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  section#about {
+    font-size: 4vw;
+  }
+
+  section#about > div > a:active {
+    background-size: 100%;
+    color: var(--onyx);
+    mix-blend-mode: difference;
   }
 }
 </style>
