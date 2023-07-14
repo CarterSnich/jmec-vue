@@ -43,12 +43,7 @@ div.me {
   place-content: center;
   position: relative;
   padding: 1rem;
-  filter: grayscale(100%);
   transition: filter 0.3s ease-in-out;
-}
-
-div.me:hover {
-  filter: grayscale(0%);
 }
 
 div.me > img {
