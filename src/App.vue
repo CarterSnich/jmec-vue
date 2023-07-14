@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRef, type Ref } from 'vue'
+import { ref, toRef, type Ref, watch, onMounted } from 'vue'
 import { vIntersectionObserver } from '@vueuse/components'
 import { setInterval, clearInterval } from 'timers-browserify'
 
@@ -9,6 +9,7 @@ import HomeSection from './components/HomeSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import ContactSection from './components/ContactSection.vue'
+import { useStorage } from '@vueuse/core'
 
 const main: Ref = ref(null)
 const homeSection: Ref = ref(null)
@@ -17,6 +18,15 @@ const aboutSection: Ref = ref(null)
 const contactSection: Ref = ref(null)
 
 const currentSection: Ref<string> = ref('')
+const lightMode = useStorage('LIGHTMODE', false)
+
+onMounted(() => {
+  document.getElementById('app')?.classList.toggle('light', lightMode.value)
+})
+
+watch(lightMode, (newValue) => {
+  document.getElementById('app')?.classList.toggle('light', newValue)
+})
 
 async function observer(isIntersecting: boolean, section: string) {
   if (isIntersecting) {

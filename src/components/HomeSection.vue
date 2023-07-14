@@ -31,7 +31,7 @@ const myName = ref(null)
   </section>
 </template>
 
-<style scoped>
+<style>
 section#home {
   display: flex;
   justify-content: space-evenly;

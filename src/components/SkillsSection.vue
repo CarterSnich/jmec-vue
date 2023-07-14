@@ -114,7 +114,7 @@ const skills = ref(null)
   </section>
 </template>
 
-<style scope>
+<style>
 @import url(https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css);
 
 section#skills {

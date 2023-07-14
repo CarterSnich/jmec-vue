@@ -25,7 +25,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style>
 div#scroll-spy {
   display: grid;
   place-content: center;

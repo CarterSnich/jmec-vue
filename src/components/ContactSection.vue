@@ -22,7 +22,7 @@
   </section>
 </template>
 
-<style scoped>
+<style>
 section#contact {
   display: grid;
   place-content: center;

@@ -1,24 +1,21 @@
 <script setup lang="ts">
-let lightMode: boolean = false
+import { useStorage } from '@vueuse/core'
+import { ref } from 'vue'
 
-function themeSwitch() {
-  lightMode = !lightMode
-  console.log(document.getElementById('app'))
-  document.getElementById('app')?.classList.toggle('light', lightMode)
-  localStorage.setItem('LIGHTMODE', `${lightMode}`)
-}
+const themeSwitcher = ref(null)
+const lightMode = useStorage('LIGHTMODE', true)
 </script>
 
 <template>
   <div id="theme-switcher">
     <label>
-      <input type="checkbox" ref="themeSwitcher" v-on:change="themeSwitch" />
+      <input type="checkbox" ref="themeSwitcher" v-model="lightMode" />
       <span></span>
     </label>
   </div>
 </template>
 
-<style scoped>
+<style>
 #theme-switcher {
   position: fixed;
   bottom: 0.75rem;
